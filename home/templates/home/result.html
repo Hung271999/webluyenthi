@@ -1,0 +1,183 @@
+{% extends "base.html" %}
+{% load static %}
+ {% block content %}
+ <head>
+    <style>
+        body {
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    color: #3a3a3a;
+    background: #fff;
+}
+    .cot-trai {
+    width: calc(100%) !important;
+    margin-right: 30px;
+    margin-left: 9px;
+    margin-bottom: -30px;
+    }
+    .col-lg-12 {
+        -webkit-box-flex: 0;
+    }
+    .skill-test-lists{
+        padding: 35px 20px 35px 32px;
+        margin-bottom: 20px;
+        background: #fff;
+    }
+    .d9Box {
+        border: solid 1px #d9d9d9;
+        border-radius: 8px;
+    }
+    .col {
+        position: relative;
+        width: 100%;
+        height: 100px;
+        padding-right: 15px;
+        padding-left: 15px;
+        min-width: 154px;
+        min-height: 154px;
+        border-radius: 14px;
+        background: #3a4bcd;
+        margin: 0 35px;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+    }
+    .result-archive-box {
+        font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #212529;
+        text-align: left;
+        background-color: #fff;
+        margin-bottom: 30px;
+    }
+    .result-columns{
+        display: flex;
+        justify-content: center;
+    }
+    .detail-question {
+    min-height: 69px;
+    border-radius: 8px;
+    background-color: #ececec;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 22px;
+    margin-left: 38px;
+    margin-right: 38px;
+}
+.col1 {
+    -ms-flex-preferred-size: 0;
+    flex-basis: 0;
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    max-width: 100%;
+}
+.o1{
+    margin-left: 50px;
+}
+.o2{
+    margin-left: 250px;
+}
+.o3{
+    margin-left: 180px;
+}
+.result-note{
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 35px;
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+
+    </style>
+</head>
+<div class="cot-trai">
+    <!--ENGLISH TEST SKILL-->
+    <div   class="skill-test-lists">
+        <div  class="col-lg-12">
+            <div style="margin-top: -30px;" class="row">
+                <!--PART 1-->
+                <div class="d9Box part-item detail">
+                    <h3 style="margin-left: 38px" >Tên bài thi: {{ exam.title|safe}}</h3>
+                    <p style="margin-left: 38px">Tên tài khoản: {{ user.username }}</p>
+                    <div class="detail-question">
+                        <div class="col1"><span style="font-size: 20px;" class="o1"><i  class="fa fa-check-square-o" aria-hidden="true"></i>{{exam.number}} câu hỏi</span></div>
+                        <div class="col1"><span class="o3"><i class="fa fa-user" aria-hidden="true"></i></span></div>
+                        <div class="col1"><span style="font-size: 20px;" class="o2"><i  id="time" class="fa fa-clock-o" aria-hidden="true"></i> {{exam.number}} phút</span></div>
+                    </div>
+
+                    <div class="result-archive-box">
+                        <h3 style="text-align: center; margin-bottom: 30px;">Kết quả bạn đạt được</h3>
+                        <div class="result-columns">
+                            <div class="col">
+                                <p style="margin: 5px; color:#f7fafa">Số câu đúng</p>
+                                <h3 style="margin: 5px; color:#f7fafa">{{ trues}}/{{exam.number}}</h3>
+                            </div>
+                            <div class="col">
+                                <p style="margin: 5px; color:#f7fafa ">Điểm số</p>
+                                <h3 id="score"  style="margin: 5px; color:#f7fafa "></h3>
+                                
+                            </div>
+                            <div class="col">
+                                <p style="margin: 5px; color:#f7fafa ">Xếp hạng</p>
+                                <h3 id="xephang" style="margin: 5px; color:#f7fafa"></h3>
+                                <!-- {% if point < 4.0 %}
+                                <h3 id="xephang" style="margin: 5px; color:#f7fafa">Poor</h3>
+                                {% elif point == 4.0 or point <= 4.9 %}
+                                <h3 style="margin: 5px; color:#f7fafa">Weak</h3>
+                                {% elif point == 5.0 or point <= 5.9 %}
+                                <h3 style="margin: 5px; color:#f7fafa">Ordinary</h3>
+                                {% elif point == 6.0 or point <= 6.9 %}
+                                <h3 style="margin: 5px; color:#f7fafa">Average Good</h3>
+                                {% elif point == 7.0 or point <= 7.9 %}
+                                <h3 style="margin: 5px; color:#f7fafa">Good</h3>
+                                {% elif point == 8.0 or point <= 8.9 %}
+                                <h3 style="margin: 5px; color:#f7fafa">Very Good</h3>
+                                {% else %}
+                                <h3 style="margin: 5px; color:#f7fafa">Excellent</h3>
+                                {% endif %} -->
+                            </div>
+                        </div>
+                        <div class="result-note">Chúc mừng bạn đã hoàn thành bài thi!</div>
+                        <div style="margin-top: 25px;text-align: center;">
+                            <a class="btn btn-success btn-lg" href="{% url 'detailResult' exam.id %} "><i class="fas fa-plus"></i>Xem kết quả</a>
+                        </div>
+                        
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>       
+</div>
+<script>
+    var x = document.getElementById("score");
+    var socau = '{{exam.number}}';
+    var caudung = '{{trues}}';
+    var scores = caudung*(10/socau);
+    x.textContent = scores;
+
+    var y = document.getElementById("xephang");
+    if (scores < 4.0) {
+        y.textContent = "Poor";
+    }else if (scores == 4.0 || scores <= 4.9) {
+        y.textContent = "Weak";
+    }else if (scores == 5.0 || scores <= 5.9) {
+        y.textContent = "Ordinary";
+    }else if (scores == 8.0 || scores <= 6.9) {
+        y.textContent = "Ordinary";
+    }else if (scores == 8.0 || scores <= 7.9) {
+        y.textContent = "Average Good";
+    }else if (scores == 8.0 || scores <= 8.9) {
+        y.textContent = "Good";
+    }else {
+        y.textContent = "Very Good";
+    }   
+
+</script>
+
+ {% endblock  %}

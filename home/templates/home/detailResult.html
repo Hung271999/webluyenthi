@@ -1,0 +1,290 @@
+{% extends "base.html" %}
+{% load static %}
+{% block titleindex %} {{ exam.title|safe}} {% endblock %}
+{% block content %}
+<head>
+   <style>
+      @import url(https://fonts.googleapis.com/css?family=Nunito:300);
+      h1 {
+      /* line-height: 1.1; */
+      font-size: 30px;
+      font-family: Candara;
+      font-weight: normal;
+      }
+      li {
+         border-bottom: 1px solid #d9d9d9;
+         padding-bottom: 22px;
+      }
+      input[type=checkbox]
+      {
+         -ms-transform: scale(2); /* IE */
+         -moz-transform: scale(2); /* FF */
+         -webkit-transform: scale(2); /* Safari and Chrome */
+         -o-transform: scale(2); /* Opera */
+         transform: scale(2);
+         padding: 10px;
+         margin-left: 5px;
+         margin-bottom: 10px;
+      }
+      #checkboxtext
+      {
+      display: inline;
+      margin-left: 20px; 
+      font-size: 17px;
+      }
+      .cot-trai {
+      float: left;
+      width: calc(100% - 350px) !important;
+      margin-right: 15px;
+      margin-left: 9px;
+      box-sizing: border-box;
+      border: solid 1px #d9d9d9;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      margin-top: -5px;
+      
+      }
+      .cot-phai {
+      float: left;
+      width: 315px;
+      box-sizing: border-box;
+      margin-top: -5px;
+      }
+      .btn_nop {
+      height: 51px !important;
+      line-height: 51px !important;
+      padding: 0 106px !important;
+      min-width: 200px !important;
+      text-transform: uppercase;
+      color: rgb(0, 0, 0);
+      background-color: #55ecf1;
+      size: 35px;
+      margin-top: 10px;
+      margin-left: 12px;
+      }
+    .btn_cancel {
+    height: 51px !important;
+    line-height: 51px !important;
+    padding: 0 106px !important;
+    min-width: 200px !important;
+    text-transform: uppercase;
+    color: rgb(0, 0, 0);
+    background-color: #f00707;
+    size: 35px;
+    margin-top: 10px;
+    margin-left: 12px;
+    }
+
+
+      .d9Box {
+      border: solid 1px #d9d9d9;
+      border-radius: 8px;
+      }
+      .number-of-questions {
+      padding: 21px 12px;
+      }
+      .number-of-questions .time-remain {
+      background: #efefef;
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+      border-radius: 5px;
+      -khtml-border-radius: 5px;
+      min-height: 71px;
+      text-align: center;
+      padding-top: 8px;
+      margin-bottom: 19px;
+}
+.custom-btn {
+  width: 130px;
+  height: 40px;
+  color: #fff;
+  border-radius: 5px;
+  padding: 10px 25px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 500;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+   box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+  outline: none;
+}
+.btn-12{
+  position: relative;
+  right: 20px;
+  bottom: 20px;
+  border:none;
+  box-shadow: none;
+  width: 130px;
+  height: 40px;
+  line-height: 42px;
+  -webkit-perspective: 230px;
+  perspective: 230px;
+}
+.btn-12 span {
+  background: rgb(0,172,238);
+background: linear-gradient(0deg, rgba(0,172,238,1) 0%, rgba(2,126,251,1) 100%);
+  display: block;
+  position: absolute;
+  width: 130px;
+  height: 40px;
+  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+  border-radius: 5px;
+  margin:0;
+  text-align: center;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+}
+.btn-12 span:nth-child(1) {
+  box-shadow:
+   -7px -7px 20px 0px #fff9,
+   -4px -4px 5px 0px #fff9,
+   7px 7px 20px 0px #0002,
+   4px 4px 5px 0px #0001;
+  -webkit-transform: rotateX(90deg);
+  -moz-transform: rotateX(90deg);
+  transform: rotateX(90deg);
+  -webkit-transform-origin: 50% 50% -20px;
+  -moz-transform-origin: 50% 50% -20px;
+  transform-origin: 50% 50% -20px;
+}
+.btn-12 span:nth-child(2) {
+  -webkit-transform: rotateX(0deg);
+  -moz-transform: rotateX(0deg);
+  transform: rotateX(0deg);
+  -webkit-transform-origin: 50% 50% -20px;
+  -moz-transform-origin: 50% 50% -20px;
+  transform-origin: 50% 50% -20px;
+}
+.btn-12:hover span:nth-child(1) {
+  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+  -webkit-transform: rotateX(0deg);
+  -moz-transform: rotateX(0deg);
+  transform: rotateX(0deg);
+}
+.btn-12:hover span:nth-child(2) {
+  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+ color: transparent;
+  -webkit-transform: rotateX(-90deg);
+  -moz-transform: rotateX(-90deg);
+  transform: rotateX(-90deg);
+}
+
+   </style>
+</head>
+        <div class="cot-trai">
+            <div style="margin-left: 30px; margin-top: 30px;">
+               <h1 style="margin-left: 20px;"> {{ exam.title|safe}}</h1>
+               <form class= "" method="post" , action="{% url 'result' exam.id %}">
+                  {% csrf_token %}
+                  <ul>
+                     {% if list_Question %}
+                     {% for item in list_Question %}
+                     <h4>Câu {{ forloop.counter}}:</h4>
+                     <a >
+                        <h4>
+                           <p>
+                           {{item.question}}
+                           </p>
+                        </h4>
+                     </a>
+                     <p >{% for choice in item.choices %}</p>
+                     <div>
+                        <input  type="checkbox" value="{{choice.id}}" name="choice" />
+                           <span style="margin-bottom: 10px;" id="checkboxtext">
+                              {% if choice.true is True %}
+                                  <a style="color: red;">{{choice|safe}}</a>
+                              {% else %}
+                                  {{choice|safe}}
+                              {% endif %}
+                           </span>
+                     </div>
+                     {% endfor %}
+                        {% endfor %}
+                        {% else %}
+                           <a>null</a>
+                        {% endif %}
+                        <!-- <div style="text-align:center">
+                           <input type="submit" style="margin-top: 10px;"  class="btn nop" value="Nộp bài">
+                        </div> -->
+                        <!-- <p><input type="submit" value="NỘP"></p> -->
+                  </ul>
+            </div>
+         </div>
+         <div class="cot-phai">
+            <div class="number-of-questions d9Box position-fixed" style="top: 5px;">
+               <div class="time-remain">
+                  <p>Kết qủa đề thi:</p>
+               </div>
+            </form>  
+            </div>
+         </div>
+         </div>
+       <script>
+         function startTimer(duration, display) {
+             var start = Date.now(),
+                 diff,
+                 minutes,
+                 seconds;
+             function timer() {
+                 diff = duration - (((Date.now() - start) / 1000) | 0);
+                 minutes = (diff / 60) | 0;
+                 seconds = (diff % 60) | 0;
+     
+                 minutes = minutes < 10 ? "0" + minutes : minutes;
+                 seconds = seconds < 10 ? "0" + seconds : seconds;
+     
+                 display.textContent = minutes + ":" + seconds;
+     
+                 if (diff <= 0) {
+                     start = Date.now() + 1000;
+                 }
+             };
+             timer();
+             setInterval(timer, 1000);
+         }
+         window.onload = function () {
+             var number = '{{ exam.number }}',
+             time = 60 * number,
+             display = document.querySelector('#time');
+             startTimer(time, display);
+             setTimeout(function () { document.quiz.submit(); }, time * 1000);
+         };
+     </script>
+     
+     <script>
+         $(document).ready(function () {
+     
+             $("#submitQuiz").click(function () {
+                 if (confirm('Bạn muốn nộp bài?')) {
+                     return true;
+                 }
+                 else {
+                     return false;
+                 }
+             });
+     
+             $("#cancelQuiz").click(function () {
+                 if (confirm('Bạn có chắc chắn muốn thoát không')) {
+                     return true;
+                 }
+                 else {
+                     return false;
+                 }
+             });
+         });
+     </script>
+    </div>
+ {% endblock  %}
