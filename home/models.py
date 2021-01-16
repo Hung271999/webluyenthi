@@ -1,5 +1,6 @@
 from django.db import models
 from ckeditor.fields import RichTextField
+
 # Create your models here.
 class Subjects(models.Model):
     title=models.CharField(max_length=500)
@@ -40,4 +41,7 @@ class File(models.Model):
     subjects= models.ForeignKey(Subjects, on_delete=models.CASCADE,null=True, blank=True)
     def __str__(self):
         return self.title
+
+
+
 

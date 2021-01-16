@@ -17,6 +17,7 @@
       }
       input[type=checkbox]
       {
+         
          -ms-transform: scale(2); /* IE */
          -moz-transform: scale(2); /* FF */
          -webkit-transform: scale(2); /* Safari and Chrome */
@@ -181,7 +182,12 @@ background: linear-gradient(0deg, rgba(0,172,238,1) 0%, rgba(2,126,251,1) 100%);
   -moz-transform: rotateX(-90deg);
   transform: rotateX(-90deg);
 }
-
+.divquetion {
+   display: flex;
+}
+.divquetion-p{
+   padding-left: 20px;
+}
    </style>
 </head>
         <div class="cot-trai">
@@ -195,17 +201,15 @@ background: linear-gradient(0deg, rgba(0,172,238,1) 0%, rgba(2,126,251,1) 100%);
                      <h4>Câu {{ forloop.counter}}:</h4>
                      <a >
                         <h4>
-                           <p>
-                           {{item.question}}
-                           </p>
+                        {{item.question|safe}}
                         </h4>
                      </a>
                      <p >{% for choice in item.choices %}</p>
-                     <div>
-                        <input  type="checkbox" value="{{choice.id}}" name="choice" />
-                           <span style="margin-bottom: 10px;" id="checkboxtext">
-                              {{choice|safe}}
-                           </span>
+                     <div class="divquetion">
+                        <input style="margin-top: 10px;" type="checkbox" value="{{choice.id}}" name="choice" />                  
+                        <div class="divquetion-p">
+                           {{choice|safe}} 
+                        </div>
                      </div>
                      {% endfor %}
                         {% endfor %}
